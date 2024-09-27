@@ -8,7 +8,7 @@ namespace WarehousesEvidence.Data
         public DataDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<DataDbContext>();
-            optionsBuilder.UseSqlite("Data Source=farmingsimulator.db");
+            optionsBuilder.UseSqlite("Data Source=WarehousesEvidence.db");
 
             return new DataDbContext(optionsBuilder.Options);
         }
