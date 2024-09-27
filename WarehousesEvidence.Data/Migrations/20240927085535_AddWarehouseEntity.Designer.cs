@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WarehousesEvidence.Data;
 
@@ -10,32 +11,16 @@ using WarehousesEvidence.Data;
 namespace WarehousesEvidence.Data.Migrations
 {
     [DbContext(typeof(DataDbContext))]
-    partial class DataDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240927085535_AddWarehouseEntity")]
+    partial class AddWarehouseEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
 
-            modelBuilder.Entity("WarehousesEvidence.Data.Entities.AuditLog", b =>
-                {
-                    b.Property<int>("AuditLogId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("AuditLogId");
-
-                    b.ToTable("Audit", (string)null);
-                });
-
-            modelBuilder.Entity("WarehousesEvidence.Data.Entities.Person", b =>
+            modelBuilder.Entity("WarehousesEvidence.Core.Entities.Person", b =>
                 {
                     b.Property<int>("PersonId")
                         .ValueGeneratedOnAdd()
@@ -93,7 +78,7 @@ namespace WarehousesEvidence.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WarehousesEvidence.Data.Entities.Product", b =>
+            modelBuilder.Entity("WarehousesEvidence.Core.Entities.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -104,9 +89,6 @@ namespace WarehousesEvidence.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("ProductId");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("Products", (string)null);
 
@@ -138,7 +120,7 @@ namespace WarehousesEvidence.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WarehousesEvidence.Data.Entities.Warehouse", b =>
+            modelBuilder.Entity("WarehousesEvidence.Core.Entities.Warehouse", b =>
                 {
                     b.Property<int>("WarehouseId")
                         .ValueGeneratedOnAdd()
@@ -171,7 +153,7 @@ namespace WarehousesEvidence.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WarehousesEvidence.Data.Entities.WarehouseProduct", b =>
+            modelBuilder.Entity("WarehousesEvidence.Core.Entities.WarehouseProduct", b =>
                 {
                     b.Property<int>("WarehouseId")
                         .HasColumnType("INTEGER");
@@ -221,16 +203,16 @@ namespace WarehousesEvidence.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WarehousesEvidence.Data.Entities.WarehouseProduct", b =>
+            modelBuilder.Entity("WarehousesEvidence.Core.Entities.WarehouseProduct", b =>
                 {
-                    b.HasOne("WarehousesEvidence.Data.Entities.Product", "Product")
-                        .WithMany("WarehouseProducts")
+                    b.HasOne("WarehousesEvidence.Core.Entities.Product", "Product")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WarehousesEvidence.Data.Entities.Warehouse", "Warehouse")
-                        .WithMany("WarehouseProducts")
+                    b.HasOne("WarehousesEvidence.Core.Entities.Warehouse", "Warehouse")
+                        .WithMany("Products")
                         .HasForeignKey("WarehouseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -240,14 +222,9 @@ namespace WarehousesEvidence.Data.Migrations
                     b.Navigation("Warehouse");
                 });
 
-            modelBuilder.Entity("WarehousesEvidence.Data.Entities.Product", b =>
+            modelBuilder.Entity("WarehousesEvidence.Core.Entities.Warehouse", b =>
                 {
-                    b.Navigation("WarehouseProducts");
-                });
-
-            modelBuilder.Entity("WarehousesEvidence.Data.Entities.Warehouse", b =>
-                {
-                    b.Navigation("WarehouseProducts");
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

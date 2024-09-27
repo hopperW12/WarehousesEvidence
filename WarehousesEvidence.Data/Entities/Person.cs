@@ -1,4 +1,4 @@
-﻿namespace WarehousesEvidence.Core.Entities
+﻿namespace WarehousesEvidence.Data.Entities
 {
     public class Person
     {

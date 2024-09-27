@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WarehousesEvidence.Core.Entities;
+using WarehousesEvidence.Data.Entities;
 
 namespace WarehousesEvidence.Data.Configurations
 {

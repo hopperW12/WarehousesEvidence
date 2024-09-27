@@ -1,4 +1,4 @@
-﻿using WarehousesEvidence.Core.Entities;
+﻿using WarehousesEvidence.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace WarehousesEvidence.Data.Repositories

@@ -1,12 +1,10 @@
-﻿using WarehousesEvidence.Core.Entities;
+﻿using WarehousesEvidence.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace WarehousesEvidence.Data
 {
     public class DataDbContext : DbContext
     {
-        public DbSet<Person> People { get; set; }
-
         public DataDbContext(DbContextOptions<DataDbContext> options)
             : base(options) { }
 

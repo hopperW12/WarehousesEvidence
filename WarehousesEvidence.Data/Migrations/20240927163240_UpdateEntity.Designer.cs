@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WarehousesEvidence.Data;
 
@@ -10,30 +11,14 @@ using WarehousesEvidence.Data;
 namespace WarehousesEvidence.Data.Migrations
 {
     [DbContext(typeof(DataDbContext))]
-    partial class DataDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240927163240_UpdateEntity")]
+    partial class UpdateEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
-
-            modelBuilder.Entity("WarehousesEvidence.Data.Entities.AuditLog", b =>
-                {
-                    b.Property<int>("AuditLogId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("AuditLogId");
-
-                    b.ToTable("Audit", (string)null);
-                });
 
             modelBuilder.Entity("WarehousesEvidence.Data.Entities.Person", b =>
                 {

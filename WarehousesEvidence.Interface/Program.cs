@@ -1,6 +1,8 @@
 ﻿using WarehousesEvidence.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using WarehousesEvidence.Core.Extensions;
+using WarehousesEvidence.Interface.Extensions;
 
 namespace WarehousesEvidence.Interface
 {
@@ -11,11 +13,13 @@ namespace WarehousesEvidence.Interface
             var services = CreateServices();
 
             //Database migrate
-            var DbContext = services.GetRequiredService<DataDbContext>();
+            var DbContext = services.GetRequiredService<DbContext>();
             DbContext.Database.Migrate();
 
             //Run application
             var app = services.GetRequiredService<Application>();
+            app.CreateActions(services); 
+
             app.Run();
         }
 
@@ -24,7 +28,16 @@ namespace WarehousesEvidence.Interface
             var services = new ServiceCollection();
 
             //Database
-            services.AddDbContext<DataDbContext>(options => options.UseSqlite("Data Source=WarehousesEvidence.db"));
+            services.AddDbContext<DbContext, DataDbContext>(options => options.UseSqlite("Data Source=WarehousesEvidence.db"));
+
+            //Repositories
+            services.AddRepositories();
+
+            //Services
+            services.AddServices();
+
+            //Add menu action
+            services.AddMenuAction();
 
             //Application
             services.AddSingleton<Application>();
