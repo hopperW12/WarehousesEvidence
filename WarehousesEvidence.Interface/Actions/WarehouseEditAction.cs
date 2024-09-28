@@ -23,6 +23,12 @@ namespace WarehousesEvidence.Interface.Actions
         public async Task Show()
         {
             var warehouses = await _warehouseService.GetAllWithIncludes();
+            if (warehouses.Count == 0)
+            {
+                Console.WriteLine("\nNeexistuje zadny sklad");
+                return;
+            }
+
             var selectWarehouse = Prompt
                 .Select<Warehouse>(o => 
                     o.WithMessage("Vyber sklad")

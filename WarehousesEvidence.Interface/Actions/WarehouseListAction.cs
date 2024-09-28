@@ -2,11 +2,11 @@
 
 namespace WarehousesEvidence.Interface.Actions
 {
-    public class WarehousesListAction : IAction
+    public class WarehouseListAction : IAction
     {
         private IWarehouseRepository _warehouseRepository;
 
-        public WarehousesListAction(IWarehouseRepository warehouseRepository)
+        public WarehouseListAction(IWarehouseRepository warehouseRepository)
         {
             _warehouseRepository = warehouseRepository;
         }
@@ -20,8 +20,14 @@ namespace WarehousesEvidence.Interface.Actions
             {
                 Console.WriteLine($"\nNazev: {warehouse.Name}, Adresa: {warehouse.Address}");
 
+                if (warehouse.WarehouseProducts is null)
+                {
+                    Console.WriteLine("    Sklad neobsahuje zadne produkty");
+                    continue;
+
+                }
                 foreach (var product in warehouse.WarehouseProducts)
-                    Console.WriteLine($"    Nazev: {product.Product.Name}, Mnozstvi: {product.Quantity}");
+                    Console.WriteLine($"    Produkt: {product.Product.Name}, Mnozstvi: {product.Quantity}");
             }
         }
     }

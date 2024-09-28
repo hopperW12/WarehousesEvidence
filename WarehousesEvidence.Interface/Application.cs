@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Sharprompt;
 using Sharprompt.Fluent;
-using System.Reflection;
 using WarehousesEvidence.Data.Repositories;
 using WarehousesEvidence.Interface.Actions;
 
@@ -41,6 +40,7 @@ namespace WarehousesEvidence.Interface
                                                             .WithTextSelector(a => a.Description));
             await selectAction.Show();
 
+            Console.WriteLine("\nPro pokracovani prosim zmackni klavesu");
             Console.ReadLine();
             Console.Clear();
 
