@@ -26,11 +26,21 @@ namespace WarehousesEvidence.Data.Services
 
         public async Task<Warehouse?> AddWarehouse(Warehouse warehouse)
         {
+            await _auditRepository.Add(new AuditLog
+            {
+                DateTime = DateTime.Now,
+                Message = $"Warehouse with id {warehouse.WarehouseId} and name {warehouse.Name} was added"
+            });
             return await _warehouseRepository.Add(warehouse);
         }
 
         public async Task DeleteWarehouse(Warehouse warehouse)
         {
+            await _auditRepository.Add(new AuditLog
+            {
+                DateTime = DateTime.Now,
+                Message = $"Warehouse with id {warehouse.WarehouseId} and name {warehouse.Name} has been removed"
+            });
             await _warehouseRepository.Remove(warehouse);
         }
 

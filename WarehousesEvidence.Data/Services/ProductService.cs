@@ -46,11 +46,21 @@ namespace WarehousesEvidence.Data.Services
 
         public async Task<Product> Update(Product product)
         {
+            await _auditRepository.Add(new AuditLog
+            {
+                DateTime = DateTime.Now,
+                Message = $"The product {product.Name} has been modified"
+            });
             return await _productRepository.Update(product);
         }
 
         public async Task Remove(Product product)
         {
+            await _auditRepository.Add(new AuditLog
+            {
+                DateTime = DateTime.Now,
+                Message = $"The product {product.Name} has been removed"
+            });
             await _productRepository.Remove(product);
         }
 
