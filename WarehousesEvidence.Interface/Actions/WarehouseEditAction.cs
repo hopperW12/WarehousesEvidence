@@ -1,10 +1,8 @@
 ﻿
 using Sharprompt;
 using Sharprompt.Fluent;
-using System.Diagnostics;
 using System.Reflection;
 using WarehousesEvidence.Data.Entities;
-using WarehousesEvidence.Data.Repositories;
 using WarehousesEvidence.Data.Services;
 
 namespace WarehousesEvidence.Interface.Actions
@@ -20,7 +18,7 @@ namespace WarehousesEvidence.Interface.Actions
             _productService = productService;
         }
 
-        public string Description => "Upravit Warehouse";
+        public string Description => "Upravit sklad";
 
         public async Task Show()
         {
@@ -62,10 +60,11 @@ namespace WarehousesEvidence.Interface.Actions
             } 
             else if (action == WarehouseEditMenuAction.AddProduct)
             {
+                var products = await _productService.GetAll();
                 var product = Prompt
-                    .Select<Product>(async o =>
+                    .Select<Product>(o =>
                         o.WithMessage("Vyber produkt")
-                         .WithItems(await _productService.GetAll())
+                         .WithItems(products.Except(selectWarehouse.Products))
                          .WithTextSelector(e => e.Name));
 
                 var quantity = Prompt.Input<int>("Mnozstvi");
