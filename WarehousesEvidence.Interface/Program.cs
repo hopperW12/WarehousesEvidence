@@ -1,7 +1,8 @@
 ﻿using WarehousesEvidence.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using WarehousesEvidence.Core.Extensions;
+using WarehousesEvidence.App.Extensions;
+using WarehousesEvidence.Data.Extensions;
 using WarehousesEvidence.Interface.Extensions;
 
 namespace WarehousesEvidence.Interface

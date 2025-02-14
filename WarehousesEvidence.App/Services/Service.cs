@@ -1,4 +1,4 @@
-﻿namespace WarehousesEvidence.Data.Services
+﻿namespace WarehousesEvidence.App.Services
 {
     public interface IService
     {

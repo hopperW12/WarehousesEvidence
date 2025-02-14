@@ -1,7 +1,7 @@
 ﻿using WarehousesEvidence.Data.Entities;
 using WarehousesEvidence.Data.Repositories;
 
-namespace WarehousesEvidence.Data.Services
+namespace WarehousesEvidence.App.Services
 {
     public interface IWarehouseService : IService
     {

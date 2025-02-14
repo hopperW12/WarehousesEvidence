@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WarehousesEvidence.Data.Entities;
+﻿using WarehousesEvidence.Data.Entities;
 using WarehousesEvidence.Data.Repositories;
 
-namespace WarehousesEvidence.Data.Services
+namespace WarehousesEvidence.App.Services
 {
     public interface IProductService : IService
     {
