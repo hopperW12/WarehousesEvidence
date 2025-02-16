@@ -28,7 +28,7 @@ namespace WarehousesEvidence.Interface.Actions
             try
             {
                 var product = await _productService.Add(newProduct);
-                Console.WriteLine($"\nProdukt {product.Name} byl vytvoren (Id: {product.ProductId}).");
+                Console.WriteLine($"\nProdukt {product.Name} byl vytvoren (Id: {product.Id}).");
             }
             catch (Exception e)
             {

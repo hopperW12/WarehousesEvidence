@@ -3,32 +3,86 @@ using WarehousesEvidence.Data.Entities;
 
 namespace WarehousesEvidence.Data.Repositories
 {
-    public interface IWarehouseRepository : IRepository<Warehouse>
+    public interface IWarehouseRepository : IRepository
     {
+        public Task<Warehouse?> Add(Warehouse warehouse);
+        public Task<Warehouse?> Update(Warehouse warehouse);
+        public Task<bool?> Remove(Warehouse warehouse);
+        
         public Task<Warehouse?> GetById(int id);
+        public Task<ICollection<Warehouse>> GetAll();
         public Task<ICollection<Warehouse>> GetAllWithIncludes();
     }
 
-    public class WarehouseRepository : Repository<Warehouse>, IWarehouseRepository
+    public class WarehouseRepository : Repository, IWarehouseRepository
     {
-        public WarehouseRepository(DbContext dbContext) : base(dbContext)
+        public WarehouseRepository(IDbContextFactory<DataDbContext> contextFactory) : base(contextFactory)
         {
+        }
 
+        public async Task<Warehouse?> Add(Warehouse warehouse)
+        {
+            await using var context = await ContextFactory.CreateDbContextAsync();
+            var dbSet = context.Set<Warehouse>();
+
+            dbSet.Add(warehouse);
+            
+            await context.SaveChangesAsync();
+            return warehouse;
+        }
+
+        public async Task<Warehouse?> Update(Warehouse warehouse)
+        {
+            await using var context = await ContextFactory.CreateDbContextAsync();
+            var dbSet = context.Set<Warehouse>();
+
+            dbSet.Update(warehouse);
+            
+            await context.SaveChangesAsync();
+            return warehouse;
+        }
+
+        public async Task<bool?> Remove(Warehouse warehouse)
+        {
+            await using var context = await ContextFactory.CreateDbContextAsync();
+            var dbSet = context.Set<Warehouse>();
+
+            dbSet.Remove(warehouse);
+            
+            await context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<Warehouse?> GetById(int id)
+        {
+            await using var context = await ContextFactory.CreateDbContextAsync();
+            var dbSet = context.Set<Warehouse>();
+
+            return await dbSet
+                .AsNoTracking()
+                .FirstOrDefaultAsync(e => e.Id == id);
+        }
+
+        public async Task<ICollection<Warehouse>> GetAll()
+        {
+            await using var context = await ContextFactory.CreateDbContextAsync();
+            var dbSet = context.Set<Warehouse>();
+
+            return await dbSet
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task<ICollection<Warehouse>> GetAllWithIncludes()
         {
-            return await base.Query()
+            await using var context = await ContextFactory.CreateDbContextAsync();
+            var dbSet = context.Set<Warehouse>();
+
+            return await dbSet
                 .AsNoTracking()
                 .Include(e => e.Products)
+                .Include(e => e.WarehouseProducts)
                 .ToListAsync();
-        }
-
-        public Task<Warehouse?> GetById(int id)
-        {
-            return base.Query()
-                .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.WarehouseId == id);
         }
     }
 }

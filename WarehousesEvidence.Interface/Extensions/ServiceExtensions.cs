@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using WarehousesEvidence.Data;
 using WarehousesEvidence.Interface.Actions;
 
 namespace WarehousesEvidence.Interface.Extensions
@@ -16,6 +18,16 @@ namespace WarehousesEvidence.Interface.Extensions
                     .WithSingletonLifetime());
             });
 
+            return services;
+        }
+
+        public static IServiceCollection AddDatabase(this IServiceCollection services)
+        {
+            services.AddDbContextFactory<DataDbContext>(options =>
+            {
+                options.UseSqlite("Data Source=WarehousesEvidence.db");
+            });
+            
             return services;
         }
     }

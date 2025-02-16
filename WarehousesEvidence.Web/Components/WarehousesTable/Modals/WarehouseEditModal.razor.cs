@@ -31,7 +31,7 @@ public partial class WarehouseEditModal
         var warehouses = await _warehouseService.GetAll();
 
         ExistingNames = warehouses
-            .Where(e => e.WarehouseId != FormModel.Id)
+            .Where(e => e.Id != FormModel.Id)
             .Select(e => e.Name).ToList();
         
         EditContext = new EditContext(FormModel);
@@ -65,7 +65,7 @@ public partial class WarehouseEditModal
     {
         var warehouse = new Warehouse
         {
-            WarehouseId = FormModel.Id,
+            Id = FormModel.Id,
             Name = FormModel.Name,
             Address = FormModel.Address
         };

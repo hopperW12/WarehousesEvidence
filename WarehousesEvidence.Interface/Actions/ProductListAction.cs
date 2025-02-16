@@ -18,7 +18,7 @@ namespace WarehousesEvidence.Interface.Actions
         {
             Console.WriteLine("\nSeznam produktu:\n");
             foreach (var product in await _productRepository.GetAll())
-                Console.WriteLine($"Id: {product.ProductId}, Nazev: {product.Name}");
+                Console.WriteLine($"Id: {product.Id}, Nazev: {product.Name}");
         }
     }
 }

@@ -10,8 +10,8 @@ namespace WarehousesEvidence.Data.Extensions
             services.Scan(scan =>
             {
                 services.Scan(scan => scan
-                    .FromAssembliesOf(typeof(IRepository<>))  
-                    .AddClasses(classes => classes.AssignableTo(typeof(IRepository<>))) 
+                    .FromAssembliesOf(typeof(IRepository))  
+                    .AddClasses(classes => classes.AssignableTo(typeof(IRepository))) 
                     .AsImplementedInterfaces() 
                     .WithScopedLifetime());  
             });

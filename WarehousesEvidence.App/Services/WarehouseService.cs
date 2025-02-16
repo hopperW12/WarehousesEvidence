@@ -29,7 +29,7 @@ namespace WarehousesEvidence.App.Services
             await _auditRepository.Add(new AuditLog
             {
                 DateTime = DateTime.Now,
-                Message = $"Warehouse with id {warehouse.WarehouseId} and name {warehouse.Name} was added"
+                Message = $"Warehouse with id {warehouse.Id} and name {warehouse.Name} was added"
             });
             return await _warehouseRepository.Add(warehouse);
         }
@@ -39,7 +39,7 @@ namespace WarehousesEvidence.App.Services
             await _auditRepository.Add(new AuditLog
             {
                 DateTime = DateTime.Now,
-                Message = $"Warehouse with id {warehouse.WarehouseId} and name {warehouse.Name} has been removed"
+                Message = $"Warehouse with id {warehouse.Id} and name {warehouse.Name} has been removed"
             });
             await _warehouseRepository.Remove(warehouse);
         }
@@ -56,7 +56,7 @@ namespace WarehousesEvidence.App.Services
 
         public async Task<Warehouse?> UpdateWarehouse(Warehouse warehouse)
         {
-            var oldWarehouse = await _warehouseRepository.GetById(warehouse.WarehouseId);
+            var oldWarehouse = await _warehouseRepository.GetById(warehouse.Id);
             if (oldWarehouse is null) throw new Exception("Warehouse nebyl nalezen");
 
             var returnValue = await _warehouseRepository.Update(warehouse);

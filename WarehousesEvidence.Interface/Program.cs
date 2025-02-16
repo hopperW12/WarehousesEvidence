@@ -14,7 +14,7 @@ namespace WarehousesEvidence.Interface
             var services = CreateServices();
 
             //Database migrate
-            var DbContext = services.GetRequiredService<DbContext>();
+            var DbContext = services.GetRequiredService<DataDbContext>();
             DbContext.Database.Migrate();
 
             //Run application
@@ -29,7 +29,7 @@ namespace WarehousesEvidence.Interface
             var services = new ServiceCollection();
 
             //Database
-            services.AddDbContext<DbContext, DataDbContext>(options => options.UseSqlite("Data Source=WarehousesEvidence.db"));
+            services.AddDatabase();
 
             //Repositories
             services.AddRepositories();

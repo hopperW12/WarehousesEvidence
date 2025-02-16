@@ -43,7 +43,7 @@ public partial class WarehousesTable
     {
         var model = new WarehouseEditModel
         {
-            Id = warehouse.WarehouseId,
+            Id = warehouse.Id,
             Name = warehouse.Name,
             Address = warehouse.Address
         };

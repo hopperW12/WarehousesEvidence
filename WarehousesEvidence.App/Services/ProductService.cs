@@ -38,7 +38,7 @@ namespace WarehousesEvidence.App.Services
             await _auditRepository.Add(new AuditLog
             {
                 DateTime = DateTime.Now,
-                Message = $"Product with id {value.ProductId} and name {value.Name} was added"
+                Message = $"Product with id {value.Id} and name {value.Name} was added"
             });
             return value;
         }

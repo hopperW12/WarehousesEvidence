@@ -12,11 +12,11 @@ namespace WarehousesEvidence.Data.Configurations
             builder.HasIndex(e => e.Name).IsUnique();
 
             builder.HasData(
-                new Product { ProductId = 1, Name = "Steel" },
-                new Product { ProductId = 2, Name = "Wood Plank" },
-                new Product { ProductId = 3, Name = "Stone" },
-                new Product { ProductId = 4, Name = "Brick" },
-                new Product { ProductId = 5, Name = "Cement" }
+                new Product { Id = 1, Name = "Steel" },
+                new Product { Id = 2, Name = "Wood Plank" },
+                new Product { Id = 3, Name = "Stone" },
+                new Product { Id = 4, Name = "Brick" },
+                new Product { Id = 5, Name = "Cement" }
             );
         }
     }

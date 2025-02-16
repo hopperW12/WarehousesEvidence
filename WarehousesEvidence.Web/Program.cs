@@ -18,7 +18,7 @@ builder.Services.AddMudServices(config =>
     config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomLeft;
 });
 
-builder.Services.AddDbContext<DbContext, DataDbContext>(options => options.UseSqlite("Data Source=WarehousesEvidence.db"));
+builder.Services.AddDatabase();
 
 builder.Services.AddRepositories();
 builder.Services.AddServices();
