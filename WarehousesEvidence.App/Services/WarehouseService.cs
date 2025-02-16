@@ -1,4 +1,5 @@
-﻿using WarehousesEvidence.Data.Entities;
+﻿using Slugify;
+using WarehousesEvidence.Data.Entities;
 using WarehousesEvidence.Data.Repositories;
 
 namespace WarehousesEvidence.App.Services
@@ -26,6 +27,15 @@ namespace WarehousesEvidence.App.Services
 
         public async Task<Warehouse?> AddWarehouse(Warehouse warehouse)
         {
+            var slag = new SlugHelper().GenerateSlug(warehouse.Name);
+            warehouse.SlagName = slag;
+
+            var warehouses = await _warehouseRepository.GetAll();
+            var slags = warehouses.Select(e => e.SlagName);
+
+            if (slags.Contains(warehouse.SlagName))
+                return null;
+            
             await _auditRepository.Add(new AuditLog
             {
                 DateTime = DateTime.Now,
@@ -36,6 +46,17 @@ namespace WarehousesEvidence.App.Services
 
         public async Task DeleteWarehouse(Warehouse warehouse)
         {
+            var slag = new SlugHelper().GenerateSlug(warehouse.Name);
+            warehouse.SlagName = slag;
+
+            var warehouses = await _warehouseRepository.GetAll();
+            var slags = warehouses
+                .Where(e => e.Id != warehouse.Id)
+                .Select(e => e.SlagName);
+
+            if (slags.Contains(warehouse.SlagName))
+                return;
+            
             await _auditRepository.Add(new AuditLog
             {
                 DateTime = DateTime.Now,

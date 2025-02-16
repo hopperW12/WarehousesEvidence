@@ -10,6 +10,7 @@ namespace WarehousesEvidence.Data.Repositories
         public Task<bool?> Remove(Warehouse warehouse);
         
         public Task<Warehouse?> GetById(int id);
+        public Task<Warehouse?> GetBySlag(string slag);
         public Task<ICollection<Warehouse>> GetAll();
         public Task<ICollection<Warehouse>> GetAllWithIncludes();
     }
@@ -61,6 +62,16 @@ namespace WarehousesEvidence.Data.Repositories
             return await dbSet
                 .AsNoTracking()
                 .FirstOrDefaultAsync(e => e.Id == id);
+        }
+
+        public async Task<Warehouse?> GetBySlag(string slag)
+        {
+            await using var context = await ContextFactory.CreateDbContextAsync();
+            var dbSet = context.Set<Warehouse>();
+
+            return await dbSet
+                .AsNoTracking()
+                .FirstOrDefaultAsync(e => e.SlagName == slag);
         }
 
         public async Task<ICollection<Warehouse>> GetAll()

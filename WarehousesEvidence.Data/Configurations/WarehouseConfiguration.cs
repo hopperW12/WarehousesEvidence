@@ -22,8 +22,8 @@ namespace WarehousesEvidence.Data.Configurations
                 );
 
             builder.HasData(
-                new Warehouse { Id = 1, Name = "Building - Warehouse", Address = "18455 S Figueroa St" },
-                new Warehouse { Id = 2, Name = "Main Warehouse", Address = "Gardena CA 90248-4503" }
+                new Warehouse { Id = 1, Name = "Building - Warehouse", SlagName = "building---warehouse", Address = "18455 S Figueroa St" },
+                new Warehouse { Id = 2, Name = "Main Warehouse", SlagName = "main-warehouse", Address = "Gardena CA 90248-4503" }
             );
         }
     }

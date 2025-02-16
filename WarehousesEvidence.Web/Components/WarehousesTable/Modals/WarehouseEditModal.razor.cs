@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
+using Slugify;
 using WarehousesEvidence.App.Services;
 using WarehousesEvidence.Data.Entities;
 using WarehousesEvidence.Web.Models.Warehouse;
@@ -19,6 +20,7 @@ public partial class WarehouseEditModal
     [Inject] 
     public IWarehouseService _warehouseService { get; set; }
 
+    private ICollection<string> ExistingSlugs { get; set; }
     private ICollection<string> ExistingNames { get; set; }
 
     private EditContext? EditContext { get; set; }
@@ -33,6 +35,9 @@ public partial class WarehouseEditModal
         ExistingNames = warehouses
             .Where(e => e.Id != FormModel.Id)
             .Select(e => e.Name).ToList();
+        ExistingSlugs = warehouses
+            .Where(e => e.Id != FormModel.Id)
+            .Select(e => e.SlagName).ToList();
         
         EditContext = new EditContext(FormModel);
         MessageStore = new ValidationMessageStore(EditContext);
@@ -55,6 +60,13 @@ public partial class WarehouseEditModal
         }
         
         if (ExistingNames.Contains(FormModel.Name))
+        {
+            MessageStore?.Add(() => FormModel.Name, "Tento název již existuje");
+            EditContext?.NotifyValidationStateChanged();
+        }
+        
+        var slug = new SlugHelper().GenerateSlug(FormModel.Name);
+        if (ExistingSlugs.Contains(slug))
         {
             MessageStore?.Add(() => FormModel.Name, "Tento název již existuje");
             EditContext?.NotifyValidationStateChanged();
