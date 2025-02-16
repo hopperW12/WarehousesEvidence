@@ -4,14 +4,18 @@
             <MudText Typo="Typo.h6">Upravit sklad</MudText>
         </TitleContent>
         <DialogContent>
-            <MudTextField @bind-Value="FormModel.Name" Label="Název" Variant="Variant.Text"></MudTextField>
-            <ValidationMessage For="() => FormModel.Name" class="text-danger"/>
-            <MudTextField @bind-Value="FormModel.Address" Label="Adresa" Variant="Variant.Text"></MudTextField>
-            <ValidationMessage For="() => FormModel.Address" class="text-danger"/>
+            <div style="min-width:400px; max-width: 400px">
+                <MudTextField @bind-Value="FormModel.Name" Label="Název" Variant="Variant.Text"></MudTextField>
+                <ValidationMessage For="() => FormModel.Name" class="text-danger"/>
+                <MudTextField @bind-Value="FormModel.Address" Label="Adresa" Variant="Variant.Text"></MudTextField>
+                <ValidationMessage For="() => FormModel.Address" class="text-danger"/>
+            </div>
         </DialogContent>
         <DialogActions>
+            <MudButton Color="Color.Secondary" OnClick="Remove">Odstranit</MudButton>
+            <MudSpacer />
             <MudButton OnClick="Cancel">Storno</MudButton>
-            <MudButton Color="Color.Error" ButtonType="ButtonType.Submit">Uložit</MudButton>
+            <MudButton Color="Color.Primary" ButtonType="ButtonType.Submit">Uložit</MudButton>
         </DialogActions>
     </MudDialog>
 </EditForm>

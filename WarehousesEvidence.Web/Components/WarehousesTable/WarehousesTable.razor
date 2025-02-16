@@ -9,11 +9,13 @@
         <MudTh><MudTableSortLabel SortBy="new Func<Warehouse, object>(x => x.Name)">Jméno</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortBy="new Func<Warehouse, object>(x => x.Address)">Adresa</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortBy="new Func<Warehouse, object>(x => x.Products.Count)">Počet produktů</MudTableSortLabel></MudTh>
+        <MudTh>Akce</MudTh>
     </HeaderContent>
     <RowTemplate>
         <MudTh DataLabel="Jméno">@context.Name</MudTh>
         <MudTh DataLabel="Adresa">@context.Address</MudTh>
         <MudTh DataLabel="Počet produktů">@context.Products.Count</MudTh>
+        <MudTh><MudButton Color="Color.Info">Zobrazit</MudButton></MudTh>
     </RowTemplate>
     <PagerContent>
         <MudTablePager RowsPerPageString="Počet řádků" PageSizeOptions="new[] { 5, 10, 25 }"/>

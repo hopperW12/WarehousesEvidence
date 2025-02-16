@@ -80,4 +80,19 @@ public partial class WarehouseEditModal
         _snackbar.Add("Sklad upraven", Severity.Success);
         MudDialog.Close();
     }
+
+    private async Task Remove()
+    {
+        var warehouse = new Warehouse
+        {
+            Id = FormModel.Id,
+            Name = FormModel.Name,
+            Address = FormModel.Address
+        };
+
+        await _warehouseService.DeleteWarehouse(warehouse);
+        
+        _snackbar.Add("Sklad odstraněn", Severity.Success);
+        MudDialog.Close();
+    }
 }
