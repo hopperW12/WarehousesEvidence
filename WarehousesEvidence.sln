@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehousesEvidence.Data", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehousesEvidence.App", "WarehousesEvidence.App\WarehousesEvidence.App.csproj", "{A5E8C3B6-500A-4E4F-9E49-EC9EFF097035}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehousesEvidence.Web", "WarehousesEvidence.Web\WarehousesEvidence.Web.csproj", "{71DBEF2D-CECD-4443-A7CD-97D2480C7883}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A5E8C3B6-500A-4E4F-9E49-EC9EFF097035}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5E8C3B6-500A-4E4F-9E49-EC9EFF097035}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5E8C3B6-500A-4E4F-9E49-EC9EFF097035}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71DBEF2D-CECD-4443-A7CD-97D2480C7883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71DBEF2D-CECD-4443-A7CD-97D2480C7883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71DBEF2D-CECD-4443-A7CD-97D2480C7883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71DBEF2D-CECD-4443-A7CD-97D2480C7883}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

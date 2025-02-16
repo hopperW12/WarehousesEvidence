@@ -1,0 +1,21 @@
+﻿@using WarehousesEvidence.Data.Entities
+
+<MudTable T="Warehouse" Items="@Warehouses" Hover="true" SortLabel="Seřadit" OnRowClick="RowClickEvent">
+    <ToolBarContent>
+        <MudSpacer />
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => CreateWarehouse())">Nový sklad</MudButton>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh><MudTableSortLabel SortBy="new Func<Warehouse, object>(x => x.Name)">Jméno</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Warehouse, object>(x => x.Address)">Adresa</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Warehouse, object>(x => x.Products.Count)">Počet produktů</MudTableSortLabel></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTh DataLabel="Jméno">@context.Name</MudTh>
+        <MudTh DataLabel="Adresa">@context.Address</MudTh>
+        <MudTh DataLabel="Počet produktů">@context.Products.Count</MudTh>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager RowsPerPageString="Počet řádků" PageSizeOptions="new[] { 5, 10, 25 }"/>
+    </PagerContent>
+</MudTable>

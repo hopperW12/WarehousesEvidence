@@ -1,0 +1,17 @@
+﻿<EditForm EditContext="EditContext" OnValidSubmit="@OnSubmit">
+    <MudDialog>
+        <TitleContent>
+            <MudText Typo="Typo.h6">Upravit sklad</MudText>
+        </TitleContent>
+        <DialogContent>
+            <MudTextField @bind-Value="FormModel.Name" Label="Název" Variant="Variant.Text"></MudTextField>
+            <ValidationMessage For="() => FormModel.Name" class="text-danger"/>
+            <MudTextField @bind-Value="FormModel.Address" Label="Adresa" Variant="Variant.Text"></MudTextField>
+            <ValidationMessage For="() => FormModel.Address" class="text-danger"/>
+        </DialogContent>
+        <DialogActions>
+            <MudButton OnClick="Cancel">Storno</MudButton>
+            <MudButton Color="Color.Error" ButtonType="ButtonType.Submit">Uložit</MudButton>
+        </DialogActions>
+    </MudDialog>
+</EditForm>
