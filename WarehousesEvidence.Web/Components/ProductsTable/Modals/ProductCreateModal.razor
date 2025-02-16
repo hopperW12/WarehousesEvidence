@@ -1,0 +1,17 @@
+﻿<EditForm EditContext="EditContext" OnValidSubmit="@OnSubmit">
+    <MudDialog>
+        <TitleContent>
+            <MudText Typo="Typo.h6">Nový produkt</MudText>
+        </TitleContent>
+        <DialogContent>
+            <div style="min-width:400px; max-width: 400px">
+                <MudTextField @bind-Value="FormModel.Name" Label="Název" Variant="Variant.Text"></MudTextField>
+                <ValidationMessage For="() => FormModel.Name" class="text-danger"/>
+            </div>
+        </DialogContent>
+        <DialogActions>
+            <MudButton OnClick="Cancel">Storno</MudButton>
+            <MudButton Color="Color.Error" ButtonType="ButtonType.Submit">Vytvořit</MudButton>
+        </DialogActions>
+    </MudDialog>
+</EditForm>
