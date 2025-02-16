@@ -36,19 +36,24 @@ namespace WarehousesEvidence.Data.Repositories
 
         public async Task<List<TEntity>> GetAll()
         {
-            return await DbSet.ToListAsync();
+            return await DbSet
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> predicate)
         {
             return await DbSet
+                .AsNoTracking()
                 .Where(predicate)
                 .ToListAsync();
         }
 
         public IQueryable<TEntity> Query()
         {
-            return DbSet.AsQueryable();
+            return DbSet
+                .AsNoTracking()
+                .AsQueryable();
         }
 
         public async Task Remove(TEntity entity)

@@ -17,12 +17,18 @@ namespace WarehousesEvidence.Data.Repositories
 
         public async Task<Product?> GetById(int id)
         {
-            return await base.Query().FirstOrDefaultAsync(p => p.ProductId == id);
+            return await base
+                .Query()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.ProductId == id);
         }
 
         public async Task<Product?> GetByName(string name)
         {
-            return await base.Query().FirstOrDefaultAsync(p => p.Name == name);
+            return await base
+                .Query()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Name == name);
         }
     }
 }

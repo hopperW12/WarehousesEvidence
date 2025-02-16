@@ -16,7 +16,10 @@ namespace WarehousesEvidence.Data.Repositories
 
         public async Task<AuditLog?> GetById(int id)
         {
-            return await base.Query().FirstOrDefaultAsync(e => e.AuditLogId == id);
+            return await base
+                .Query()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(e => e.AuditLogId == id);
         }
     }
 }

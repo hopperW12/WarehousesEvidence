@@ -17,7 +17,10 @@ namespace WarehousesEvidence.Data.Repositories
 
         public Task<Person?> GetById(int id)
         {
-            return base.Query().FirstOrDefaultAsync(x => x.PersonId == id); 
+            return base
+                .Query()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.PersonId == id); 
         }
     }
 }

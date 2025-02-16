@@ -19,13 +19,16 @@ namespace WarehousesEvidence.Data.Repositories
         public async Task<ICollection<Warehouse>> GetAllWithIncludes()
         {
             return await base.Query()
+                .AsNoTracking()
                 .Include(e => e.Products)
                 .ToListAsync();
         }
 
         public Task<Warehouse?> GetById(int id)
         {
-            return base.Query().FirstOrDefaultAsync(x => x.WarehouseId == id);
+            return base.Query()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.WarehouseId == id);
         }
     }
 }
