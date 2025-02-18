@@ -11,7 +11,7 @@
                         <MudSelectItem Value="@product">@product.Name</MudSelectItem>
                     }
                 </MudSelect>
-                <MudNumericField @bind-Value="FormModel.Quantity" Label="Filled" Variant="Variant.Text" Min="1"/>
+                <MudNumericField @bind-Value="FormModel.Quantity" Label="Množství" Variant="Variant.Text" Min="1"/>
                 <ValidationMessage For="() => FormModel.Quantity" class="text-danger"/>
             </div>
         </DialogContent>

@@ -6,10 +6,10 @@
         <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => CreateProduct())">Nový produkt</MudButton>
     </ToolBarContent>
     <HeaderContent>
-        <MudTh><MudTableSortLabel SortBy="new Func<Warehouse, object>(x => x.Name)">Jméno</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Product, object>(x => x.Name)">Název</MudTableSortLabel></MudTh>
     </HeaderContent>
     <RowTemplate>
-        <MudTh DataLabel="Jméno">@context.Name</MudTh>
+        <MudTh DataLabel="Název">@context.Name</MudTh>
     </RowTemplate>
     <PagerContent>
         <MudTablePager RowsPerPageString="Počet řádků" PageSizeOptions="new[] { 5, 10, 25 }"/>

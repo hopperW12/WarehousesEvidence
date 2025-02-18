@@ -6,7 +6,7 @@
         <DialogContent>
             <div style="min-width:400px; max-width: 400px">
                 <MudTextField @bind-Value="FormModel.Product.Name" Label="Produkt" ReadOnly="true" Variant="Variant.Text" />
-                <MudNumericField @bind-Value="FormModel.Quantity" Label="Filled" Variant="Variant.Text" Min="1"/>
+                <MudNumericField @bind-Value="FormModel.Quantity" Label="Množství" Variant="Variant.Text" Min="1"/>
                 <ValidationMessage For="() => FormModel.Quantity" class="text-danger"/>
             </div>
         </DialogContent>

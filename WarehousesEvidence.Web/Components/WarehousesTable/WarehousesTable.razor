@@ -6,13 +6,13 @@
         <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => CreateWarehouse())">Nový sklad</MudButton>
     </ToolBarContent>
     <HeaderContent>
-        <MudTh><MudTableSortLabel SortBy="new Func<Warehouse, object>(x => x.Name)">Jméno</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Warehouse, object>(x => x.Name)">Název</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortBy="new Func<Warehouse, object>(x => x.Address)">Adresa</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortBy="new Func<Warehouse, object>(x => x.Products.Count)">Počet produktů</MudTableSortLabel></MudTh>
         <MudTh>Akce</MudTh>
     </HeaderContent>
     <RowTemplate>
-        <MudTh DataLabel="Jméno">@context.Name</MudTh>
+        <MudTh DataLabel="Název">@context.Name</MudTh>
         <MudTh DataLabel="Adresa">@context.Address</MudTh>
         <MudTh DataLabel="Počet produktů">@context.Products.Count</MudTh>
         <MudTh><NavLink href="@($"/warehouse/{@context.SlagName}")"><MudButton Color="Color.Info">Zobrazit</MudButton></NavLink></MudTh>

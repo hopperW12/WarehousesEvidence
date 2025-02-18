@@ -4,7 +4,7 @@
     <MudNavLink Href="/products" Match="NavLinkMatch.Prefix">Produkty</MudNavLink>
     @if (Warehouses.Count > 0)
     {
-        <MudNavGroup Title="Seznam skladu">
+        <MudNavGroup Title="Seznam skladů">
             @foreach (var warehouse in Warehouses)
             {
                 var url = $"/warehouse/{warehouse.SlagName}";
