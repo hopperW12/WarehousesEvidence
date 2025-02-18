@@ -3,7 +3,7 @@ using MudBlazor;
 using WarehousesEvidence.App.Services;
 using WarehousesEvidence.Data.Entities;
 using WarehousesEvidence.Web.Components.WarehousesTable.Modals;
-using WarehousesEvidence.Web.Models.Warehouse;
+using WarehousesEvidence.Web.Models;
 
 namespace WarehousesEvidence.Web.Components.WarehousesTable;
 

@@ -1,4 +1,4 @@
-﻿namespace WarehousesEvidence.Web.Models.Warehouse;
+﻿namespace WarehousesEvidence.Web.Models;
 
 public class WarehouseCreateModel
 {

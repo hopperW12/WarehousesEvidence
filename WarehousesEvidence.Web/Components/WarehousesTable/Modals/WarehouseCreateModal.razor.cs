@@ -4,7 +4,7 @@ using MudBlazor;
 using Slugify;
 using WarehousesEvidence.App.Services;
 using WarehousesEvidence.Data.Entities;
-using WarehousesEvidence.Web.Models.Warehouse;
+using WarehousesEvidence.Web.Models;
 
 namespace WarehousesEvidence.Web.Components.WarehousesTable.Modals;
 

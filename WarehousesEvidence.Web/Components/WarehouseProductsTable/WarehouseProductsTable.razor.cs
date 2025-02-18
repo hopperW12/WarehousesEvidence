@@ -5,7 +5,6 @@ using WarehousesEvidence.Data.Entities;
 using WarehousesEvidence.Web.Components.WarehouseProductsTable.Modals;
 using WarehousesEvidence.Web.Components.WarehousesTable.Modals;
 using WarehousesEvidence.Web.Models;
-using WarehousesEvidence.Web.Models.Warehouse;
 
 namespace WarehousesEvidence.Web.Components.WarehouseProductsTable;
 

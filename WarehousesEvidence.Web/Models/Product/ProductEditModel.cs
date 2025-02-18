@@ -1,4 +1,4 @@
-﻿namespace WarehousesEvidence.Web.Models.Product;
+﻿namespace WarehousesEvidence.Web.Models;
 
 public class ProductEditModel
 {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using WarehousesEvidence.App.Services;
 using WarehousesEvidence.Data.Entities;
-using WarehousesEvidence.Web.Models.Product;
+using WarehousesEvidence.Web.Models;
 
 namespace WarehousesEvidence.Web.Components.ProductsTable.Modals;
 
