@@ -1,0 +1,9 @@
+﻿@page "/warehouse/{WarehouseSlug}"
+
+
+@if (Warehouse != null)
+{   
+    <h1>@Warehouse.Name</h1>
+
+    <WarehouseProductsTable WarehouseId="Warehouse.Id"></WarehouseProductsTable>
+}

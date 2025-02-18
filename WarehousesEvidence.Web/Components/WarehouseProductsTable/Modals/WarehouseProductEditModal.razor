@@ -1,0 +1,20 @@
+﻿<EditForm EditContext="EditContext" OnValidSubmit="@OnSubmit">
+    <MudDialog>
+        <TitleContent>
+            <MudText Typo="Typo.h6">Upravit produkt</MudText>
+        </TitleContent>
+        <DialogContent>
+            <div style="min-width:400px; max-width: 400px">
+                <MudTextField @bind-Value="FormModel.Product.Name" Label="Produkt" ReadOnly="true" Variant="Variant.Text" />
+                <MudNumericField @bind-Value="FormModel.Quantity" Label="Filled" Variant="Variant.Text" Min="1"/>
+                <ValidationMessage For="() => FormModel.Quantity" class="text-danger"/>
+            </div>
+        </DialogContent>
+        <DialogActions>
+            <MudButton Color="Color.Secondary" OnClick="Remove">Odstranit</MudButton>
+            <MudSpacer />
+            <MudButton OnClick="Cancel">Storno</MudButton>
+            <MudButton Color="Color.Error" ButtonType="ButtonType.Submit">Uložit</MudButton>
+        </DialogActions>
+    </MudDialog>
+</EditForm>

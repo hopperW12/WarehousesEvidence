@@ -2,9 +2,14 @@
     <MudNavLink Href="/" Match="NavLinkMatch.All">Celkový přehled</MudNavLink>
     <MudNavLink Href="/warehouses" Match="NavLinkMatch.Prefix">Sklady</MudNavLink>
     <MudNavLink Href="/products" Match="NavLinkMatch.Prefix">Produkty</MudNavLink>
-    <MudNavGroup Title="Seznam skladu">
-        <MudNavLink Href="/warehouses/holesov" Match="NavLinkMatch.Prefix">Holešov</MudNavLink>
-        <MudNavLink Href="/warehouses/test" Match="NavLinkMatch.Prefix">Test</MudNavLink>
-        <MudNavLink Href="/warehouses/Testik" Match="NavLinkMatch.Prefix">Testik</MudNavLink>
-    </MudNavGroup>
+    @if (Warehouses.Count > 0)
+    {
+        <MudNavGroup Title="Seznam skladu">
+            @foreach (var warehouse in Warehouses)
+            {
+                var url = $"/warehouse/{warehouse.SlagName}";
+                <MudNavLink Href="@url" Match="NavLinkMatch.Prefix">@warehouse.Name</MudNavLink>
+            }
+        </MudNavGroup>
+    }
 </MudNavMenu>

@@ -1,0 +1,23 @@
+﻿<EditForm EditContext="EditContext" OnValidSubmit="@OnSubmit">
+    <MudDialog>
+        <TitleContent>
+            <MudText Typo="Typo.h6">Přidat produkt</MudText>
+        </TitleContent>
+        <DialogContent>
+            <div style="min-width:400px; max-width: 400px">
+                <MudSelect Label="Produkt" @bind-Value="@FormModel.Product">
+                    @foreach(var product in FormModel.AvailableProducts)
+                    {
+                        <MudSelectItem Value="@product">@product.Name</MudSelectItem>
+                    }
+                </MudSelect>
+                <MudNumericField @bind-Value="FormModel.Quantity" Label="Filled" Variant="Variant.Text" Min="1"/>
+                <ValidationMessage For="() => FormModel.Quantity" class="text-danger"/>
+            </div>
+        </DialogContent>
+        <DialogActions> 
+            <MudButton OnClick="Cancel">Storno</MudButton>
+            <MudButton Color="Color.Error" ButtonType="ButtonType.Submit">Přidat</MudButton>
+        </DialogActions>
+    </MudDialog>
+</EditForm>
