@@ -1,0 +1,15 @@
+﻿@using WarehousesEvidence.Data.Entities
+
+<MudTable T="AuditLog" Items="@Logs" Hover="true" SortLabel="Seřadit">
+    <HeaderContent>
+        <MudTh><MudTableSortLabel SortBy="new Func<AuditLog, object>(x => x.DateTime)">Datum</MudTableSortLabel></MudTh>
+        <MudTh>Zpráva</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTh DataLabel="Název">@context.DateTime.ToString("d.M.yyy HH:mm:ss")</MudTh>
+        <MudTh DataLabel="Zpráva">@context.Message</MudTh>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager RowsPerPageString="Počet řádků" PageSizeOptions="new[] { 25, 50, 100 }"/>
+    </PagerContent>
+</MudTable>
