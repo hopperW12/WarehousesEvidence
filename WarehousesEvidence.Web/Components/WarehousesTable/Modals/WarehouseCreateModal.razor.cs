@@ -4,6 +4,7 @@ using MudBlazor;
 using Slugify;
 using WarehousesEvidence.App.Services;
 using WarehousesEvidence.Data.Entities;
+using WarehousesEvidence.Web.Mapper;
 using WarehousesEvidence.Web.Models;
 
 namespace WarehousesEvidence.Web.Components.WarehousesTable.Modals;
@@ -14,6 +15,8 @@ public partial class WarehouseCreateModal
     private IMudDialogInstance MudDialog { get; set; }
     [Parameter]
     public WarehouseCreateModel FormModel { get; set; }
+    [Inject]
+    public IWarehouseModelMapper _mapper { get; set; }
     
     [Inject]
     public ISnackbar _snackbar { get; set; }
@@ -71,11 +74,8 @@ public partial class WarehouseCreateModal
 
     private async Task OnSubmit()
     {
-        var warehouse = new Warehouse
-        {
-            Name = FormModel.Name,
-            Address = FormModel.Address
-        };
+        var warehouse = new Warehouse();
+        _mapper.Map(FormModel, warehouse);
 
         var result = await _warehouseService.AddWarehouse(warehouse);
         if (result == null)  

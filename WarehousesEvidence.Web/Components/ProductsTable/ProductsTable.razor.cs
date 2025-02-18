@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Runtime.InteropServices;
+using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using WarehousesEvidence.App.Services;
 using WarehousesEvidence.Data.Entities;
 using WarehousesEvidence.Web.Components.ProductsTable.Modals;
+using WarehousesEvidence.Web.Mapper;
 using WarehousesEvidence.Web.Models;
 
 namespace WarehousesEvidence.Web.Components.ProductsTable;
@@ -13,6 +15,8 @@ public partial class ProductsTable
     private IDialogService _dialogService { get; set; }
     [Inject] 
     public IProductService _productService { get; set; }    
+    [Inject]
+    public IProductModelMapper _mapper { get; set; }
     
     private ICollection<Product> Products { get; set; } = new List<Product>();
 
@@ -47,11 +51,8 @@ public partial class ProductsTable
     
     private async Task EditProduct(Product product)
     {
-        var model = new ProductEditModel
-        {
-            Id = product.Id,
-            Name = product.Name
-        };
+        var model = new ProductEditModel();
+        _mapper.Map(product, model);
         
         var parameters = new DialogParameters<ProductEditModal> { { x => x.FormModel, model } };
         var dialog = await _dialogService.ShowAsync<ProductEditModal>("Edit product", parameters);

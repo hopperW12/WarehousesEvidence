@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using WarehousesEvidence.App.Services;
 using WarehousesEvidence.Data.Entities;
+using WarehousesEvidence.Web.Mapper;
 using WarehousesEvidence.Web.Models;
 
 namespace WarehousesEvidence.Web.Components.ProductsTable.Modals;
@@ -18,6 +19,8 @@ public partial class ProductCreateModal
     public ISnackbar _snackbar { get; set; }
     [Inject] 
     public IProductService _productService { get; set; }
+    [Inject]
+    public IProductModelMapper _mapper { get; set; }
 
     private ICollection<string> ExistingNames { get; set; }
 
@@ -56,11 +59,9 @@ public partial class ProductCreateModal
 
     private async Task OnSubmit()
     {
-        var product = new Product
-        {
-            Name = FormModel.Name
-        };
-
+        var product = new Product();
+        _mapper.Map(FormModel, product);
+        
         await _productService.Add(product);
         
         _snackbar.Add("Produkt vytvořen", Severity.Success);

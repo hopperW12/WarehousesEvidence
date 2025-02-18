@@ -22,6 +22,7 @@ builder.Services.AddDatabase();
 
 builder.Services.AddRepositories();
 builder.Services.AddServices();
+builder.Services.AddModelMappers();
 
 var app = builder.Build();
 

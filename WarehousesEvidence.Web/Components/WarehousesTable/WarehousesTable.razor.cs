@@ -3,6 +3,7 @@ using MudBlazor;
 using WarehousesEvidence.App.Services;
 using WarehousesEvidence.Data.Entities;
 using WarehousesEvidence.Web.Components.WarehousesTable.Modals;
+using WarehousesEvidence.Web.Mapper;
 using WarehousesEvidence.Web.Models;
 
 namespace WarehousesEvidence.Web.Components.WarehousesTable;
@@ -15,6 +16,8 @@ public partial class WarehousesTable
     private IDialogService _dialogService { get; set; }
     [Inject] 
     public IWarehouseService _warehouseService { get; set; }
+    [Inject]
+    public IWarehouseModelMapper _mapper { get; set; }
     
     private IEnumerable<Warehouse> Warehouses { get; set; } = new List<Warehouse>();
     
@@ -41,12 +44,8 @@ public partial class WarehousesTable
 
     private async Task EditWarehouse(Warehouse warehouse)
     {
-        var model = new WarehouseEditModel
-        {
-            Id = warehouse.Id,
-            Name = warehouse.Name,
-            Address = warehouse.Address
-        };
+        var model = new WarehouseEditModel();
+        _mapper.Map(warehouse, model);
         
         var parameters = new DialogParameters<WarehouseEditModal> { { x => x.FormModel, model } };
         var dialog = await _dialogService.ShowAsync<WarehouseEditModal>("Edit warehouse", parameters);

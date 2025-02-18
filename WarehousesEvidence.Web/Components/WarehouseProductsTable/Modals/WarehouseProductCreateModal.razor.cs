@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using WarehousesEvidence.App.Services;
 using WarehousesEvidence.Data.Entities;
+using WarehousesEvidence.Web.Mapper;
 using WarehousesEvidence.Web.Models;
 
 namespace WarehousesEvidence.Web.Components.WarehouseProductsTable.Modals;
@@ -13,6 +14,8 @@ public partial class WarehouseProductCreateModal
     public ISnackbar _snackbar { get; set; }
     [Inject]
     public IWarehouseProductService _warehouseProductService { get; set; }
+    [Inject]
+    public IWarehouseProductModelMapper _mapper { get; set; }
     
     [CascadingParameter]
     private IMudDialogInstance MudDialog { get; set; }
@@ -44,12 +47,8 @@ public partial class WarehouseProductCreateModal
 
     private async Task OnSubmit()
     {
-        var item = new WarehouseProduct
-        {
-            ProductId = FormModel.Product.Id,
-            WarehouseId = FormModel.Warehouse.Id,
-            Quantity = FormModel.Quantity
-        };
+        var item = new WarehouseProduct();
+        _mapper.Map(FormModel, item);
 
         await _warehouseProductService.Add(item);
 

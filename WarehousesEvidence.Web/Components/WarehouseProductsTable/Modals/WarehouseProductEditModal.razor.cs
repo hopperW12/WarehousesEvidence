@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Web;
 using MudBlazor;
 using WarehousesEvidence.App.Services;
 using WarehousesEvidence.Data.Entities;
+using WarehousesEvidence.Web.Mapper;
 using WarehousesEvidence.Web.Models;
 
 namespace WarehousesEvidence.Web.Components.WarehouseProductsTable.Modals;
@@ -14,6 +15,8 @@ public partial class WarehouseProductEditModal
     public ISnackbar _snackbar { get; set; }
     [Inject]
     public IWarehouseProductService _warehouseProductService { get; set; }
+    [Inject]
+    public IWarehouseProductModelMapper _mapper { get; set; }
     
     [CascadingParameter]
     private IMudDialogInstance MudDialog { get; set; }
@@ -60,12 +63,8 @@ public partial class WarehouseProductEditModal
 
     private async Task Remove(MouseEventArgs arg)
     {
-        var item = new WarehouseProduct
-        {
-            ProductId = FormModel.Product.Id,
-            WarehouseId = FormModel.Warehouse.Id,
-            Quantity = FormModel.Quantity
-        };
+        var item = new WarehouseProduct();
+        _mapper.Map(FormModel, item);
         
         await _warehouseProductService.Remove(item);
 
