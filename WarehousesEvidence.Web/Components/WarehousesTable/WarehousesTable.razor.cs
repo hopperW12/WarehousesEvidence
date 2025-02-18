@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Runtime.InteropServices;
+using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using WarehousesEvidence.App.Services;
 using WarehousesEvidence.Data.Entities;
@@ -18,6 +19,8 @@ public partial class WarehousesTable
     public IWarehouseService _warehouseService { get; set; }
     [Inject]
     public IWarehouseModelMapper _mapper { get; set; }
+    [Inject]
+    public NavigationManager _navigationManager { get; set; }
     
     private IEnumerable<Warehouse> Warehouses { get; set; } = new List<Warehouse>();
     
@@ -39,7 +42,10 @@ public partial class WarehousesTable
         var result = await dialog.Result;
 
         if (result is not { Canceled: true })
+        {
             await UpdateTable();
+            _navigationManager.NavigateTo(_navigationManager.Uri, true);
+        }
     }
 
     private async Task EditWarehouse(Warehouse warehouse)
@@ -52,7 +58,10 @@ public partial class WarehousesTable
         var result = await dialog.Result;
 
         if (result is not { Canceled: true })
+        {
             await UpdateTable();
+            _navigationManager.NavigateTo(_navigationManager.Uri, true);
+        }
     }
 
     private async Task RowClickEvent(TableRowClickEventArgs<Warehouse> e)
