@@ -13,14 +13,14 @@ namespace WarehousesEvidence.Interface.Actions
 
         public string Description => "Zabrazi sklady a jejich polozky";
 
-        public async Task Show()
+        public async Task<Result> Show()
         {
             var warehouses = await _warehouseRepository.GetAllWithIncludes();
             foreach (var warehouse in warehouses)
             {
                 Console.WriteLine($"\nNazev: {warehouse.Name}, Adresa: {warehouse.Address}");
 
-                if (warehouse.WarehouseProducts is null)
+                if (warehouse.WarehouseProducts.Count == 0)
                 {
                     Console.WriteLine("    Sklad neobsahuje zadne produkty");
                     continue;
@@ -29,6 +29,8 @@ namespace WarehousesEvidence.Interface.Actions
                 foreach (var product in warehouse.WarehouseProducts)
                     Console.WriteLine($"    Produkt: {product.Product.Name}, Mnozstvi: {product.Quantity}");
             }
+
+            return Result.Ok();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace WarehousesEvidence.Interface.Actions
 
         public string Description => "Vytvorit produkt";
 
-        public async Task Show()
+        public async Task<Result> Show()
         {
             var name = Prompt.Input<string>("Zadejte nazev produktu");
 
@@ -34,6 +34,8 @@ namespace WarehousesEvidence.Interface.Actions
             {
                 Console.WriteLine($"\n{e.Message}");
             }
+
+            return Result.Ok();
         }
     }
 }

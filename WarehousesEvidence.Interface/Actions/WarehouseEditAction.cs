@@ -20,13 +20,13 @@ namespace WarehousesEvidence.Interface.Actions
 
         public string Description => "Upravit sklad";
 
-        public async Task Show()
+        public async Task<Result> Show()
         {
             var warehouses = await _warehouseService.GetAllWithIncludes();
             if (warehouses.Count == 0)
             {
                 Console.WriteLine("\nNeexistuje zadny sklad");
-                return;
+                return Result.Ok();
             }
 
             var selectWarehouse = Prompt
@@ -100,6 +100,8 @@ namespace WarehousesEvidence.Interface.Actions
                 await _warehouseService.UpdateWarehouse(selectWarehouse);
                 Console.WriteLine($"\nAdresa bylo aktualizovano");
             }
+
+            return Result.Ok();
         }
     }
 

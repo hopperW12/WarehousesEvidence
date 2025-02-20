@@ -17,7 +17,7 @@ namespace WarehousesEvidence.Interface.Actions
 
         public string Description => "Vymazat sklad";
 
-        public async Task Show()
+        public async Task<Result> Show()
         {
             var warehouses = await _warehouseService.GetAll();
 
@@ -38,6 +38,8 @@ namespace WarehousesEvidence.Interface.Actions
             {
                 Console.WriteLine("\nSklad nebyl smazan");
             }
+
+            return Result.Ok();
         }
     }
 }

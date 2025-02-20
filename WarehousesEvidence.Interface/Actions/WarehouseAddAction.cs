@@ -16,7 +16,7 @@ namespace WarehousesEvidence.Interface.Actions
 
         public string Description => "Pridat sklad";
 
-        public async Task Show()
+        public async Task<Result> Show()
         {
             var name = Prompt.Input<string>("Zadejte nazev skladu");
             var address = Prompt.Input<string>("Zadejte nazev adresu");
@@ -30,6 +30,8 @@ namespace WarehousesEvidence.Interface.Actions
             await _warehouseService.AddWarehouse(warehouse);
 
             Console.WriteLine("\nSklad byl uspesne pridan");
+            
+            return Result.Ok();
         }
     }
 }

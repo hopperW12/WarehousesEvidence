@@ -5,11 +5,9 @@ namespace WarehousesEvidence.Interface.Actions
     {
         public string Description => "Ukoncit aplikaci";
 
-        public Task Show()
+        public Task<Result> Show()
         {
-            Environment.Exit(0);
-
-            return Task.CompletedTask;
+            return Task.FromResult(Result.ExitApplication());
         }
     }
 }

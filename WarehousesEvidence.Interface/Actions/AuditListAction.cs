@@ -14,7 +14,7 @@ namespace WarehousesEvidence.Interface.Actions
 
         public string Description => "Zobrazit historii skladove evidence";
 
-        public async Task Show()
+        public async Task<Result> Show()
         {
             Console.WriteLine("\nHistorie\n");
 
@@ -24,6 +24,7 @@ namespace WarehousesEvidence.Interface.Actions
                 Console.WriteLine($"{audit.DateTime.ToString("dd.MM.yyyy HH:mm:ss")} - {audit.Message}");
             }
 
+            return Result.Ok();
         }
     }
 }

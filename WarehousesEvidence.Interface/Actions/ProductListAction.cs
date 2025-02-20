@@ -14,11 +14,13 @@ namespace WarehousesEvidence.Interface.Actions
             _productRepository = productRepository;
         }
 
-        public async Task Show()
+        public async Task<Result> Show()
         {
             Console.WriteLine("\nSeznam produktu:\n");
             foreach (var product in await _productRepository.GetAll())
                 Console.WriteLine($"Id: {product.Id}, Nazev: {product.Name}");
+
+            return Result.Ok();
         }
     }
 }

@@ -1,50 +1,49 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Sharprompt;
 using Sharprompt.Fluent;
-using WarehousesEvidence.Data.Repositories;
 using WarehousesEvidence.Interface.Actions;
 
 namespace WarehousesEvidence.Interface
 {
-    public class Application
+    public class Application : IHostedService
     {
-        private IWarehouseRepository _warehouseRepository;
-        private IProductRepository _productRepository;
+        private readonly IServiceScopeFactory _scopeFactory;
 
-        private List<IAction> _actions;
-
-        public Application(IWarehouseRepository warehouseRepository, IProductRepository productRepository)
+        public Application(IServiceScopeFactory scopeFactory)
         {
-            _warehouseRepository = warehouseRepository;
-            _productRepository = productRepository;
+            _scopeFactory = scopeFactory;
+        }
+        
+        public async Task StartAsync(CancellationToken cancellationToken)
+        {
+            using var scope = _scopeFactory.CreateScope();
+            var actions = scope.ServiceProvider.GetServices<IAction>().ToList();
 
-            _actions = new List<IAction>(); 
+            while (cancellationToken.CanBeCanceled)
+            {
+                Console.WriteLine("\n       Vitej v evidenci skladů     \n");
+
+                var selectAction = Prompt.Select<IAction>(o => o.WithMessage("Vyber akce")
+                    .WithItems(actions)
+                    .WithTextSelector(a => a.Description));
+                var result = await selectAction.Show();
+                if (result is ResultExitApp)
+                {
+                    Console.WriteLine("\nUkoncuji aplikaci.....\n");
+                    return;
+                }
+
+                Console.WriteLine("\nPro pokracovani prosim zmackni klavesu");
+                Console.ReadLine();
+                Console.Clear();
+            }
         }
 
-        public void CreateActions(IServiceProvider provider)
+        public Task StopAsync(CancellationToken cancellationToken)
         {
-            provider.GetServices<IAction>().ToList().ForEach(_actions.Add);
-        }
-
-        public void Run()
-        {
-            MainMenu();
-        }
-
-        private async void MainMenu()
-        {
-            Console.WriteLine("\n       Vitej v evidenci skladů     \n");
-
-            var selectAction = Prompt.Select<IAction>(o => o.WithMessage("Vyber akce")
-                                                            .WithItems(_actions)
-                                                            .WithTextSelector(a => a.Description));
-            await selectAction.Show();
-
-            Console.WriteLine("\nPro pokracovani prosim zmackni klavesu");
-            Console.ReadLine();
-            Console.Clear();
-
-            MainMenu();
+            Console.WriteLine("\nUkoncuji aplikaci.....\n");
+            return Task.CompletedTask;
         }
     }
 }
