@@ -6,11 +6,13 @@ namespace WarehousesEvidence.Web.Extensions;
 
 public static class ServiceExtensions
 {
-    public static IServiceCollection AddDatabase(this IServiceCollection services)
+    public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
+        var dataSource = configuration["Database:DataSource"];
+        
         services.AddDbContextFactory<DataDbContext>(options =>
         {
-            options.UseSqlite("Data Source=WarehousesEvidence.db");
+            options.UseSqlite(dataSource);
         });
             
         return services;

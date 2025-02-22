@@ -1,8 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using MudBlazor;
 using MudBlazor.Services;
 using WarehousesEvidence.App.Extensions;
-using WarehousesEvidence.Data;
 using WarehousesEvidence.Data.Extensions;
 using WarehousesEvidence.Web.Components;
 using WarehousesEvidence.Web.Extensions;
@@ -18,7 +16,7 @@ builder.Services.AddMudServices(config =>
     config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomLeft;
 });
 
-builder.Services.AddDatabase();
+builder.Services.AddDatabase(builder.Configuration);
 
 builder.Services.AddRepositories();
 builder.Services.AddServices();
