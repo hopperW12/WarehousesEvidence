@@ -107,6 +107,7 @@ namespace WarehousesEvidence.Data.Repositories
                 .AsNoTracking()
                 .Include(e => e.Products)
                 .Include(e => e.WarehouseProducts)
+                    .ThenInclude(e => e.Product)
                 .ToListAsync();
         }
     }
