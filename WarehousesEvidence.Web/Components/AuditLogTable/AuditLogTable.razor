@@ -2,7 +2,7 @@
 
 <MudTable T="AuditLog" Items="@Logs" Hover="true" SortLabel="Seřadit">
     <HeaderContent>
-        <MudTh><MudTableSortLabel SortBy="new Func<AuditLog, object>(x => x.DateTime)">Datum</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel InitialDirection="SortDirection.Descending" SortBy="new Func<AuditLog, object>(x => x.DateTime)">Datum</MudTableSortLabel></MudTh>
         <MudTh>Zpráva</MudTh>
     </HeaderContent>
     <RowTemplate>
