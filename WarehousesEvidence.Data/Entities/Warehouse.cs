@@ -1,4 +1,6 @@
-﻿namespace WarehousesEvidence.Data.Entities
+﻿using Newtonsoft.Json;
+
+namespace WarehousesEvidence.Data.Entities
 {
     public class Warehouse
     {
@@ -6,8 +8,10 @@
         public string Address { get; set; }
         public string Name { get; set; } 
         public string SlagName { get; set; }
-
+        
+        [JsonIgnore]
         public ICollection<WarehouseProduct> WarehouseProducts { get; set; }
+        [JsonIgnore]
         public ICollection<Product> Products { get; set; }
     }
 }
